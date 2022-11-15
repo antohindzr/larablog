@@ -43,7 +43,7 @@ class User extends Component
             ->join('subscriptions', 'users.id', '=', 'subscriptions.subscription_id')
             ->where('subscriptions.user_id', $this->user->id)
             ->select('users.id', 'users.name')
-            ->paginate(5),
+            ->paginate(10),
         ])
                 ->extends('layouts.app')
                 ->section('content');
