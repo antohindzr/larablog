@@ -12,8 +12,8 @@ class User extends Component
     public $user;
     public $post;
     public $subscription;
-    public $postsubs;
-    public $namesubs;
+    
+    
     public $postraw;
    
         
@@ -22,18 +22,6 @@ class User extends Component
         $this->user = BlogPost::where('id', $id)->first();
         $this->post = Post::all()->where('user_id', '=', $this->user->id);
         $this->subscription=Subscription::all()->where('user_id', '=', $this->user->id);
-        $this->postsubs=DB::table('posts')
-        ->join('subscriptions', 'posts.user_id', '=', 'subscriptions.subscription_id')
-        ->join('users', 'posts.user_id', '=', 'users.id')
-        ->where('subscriptions.user_id', $this->user->id)
-        ->select('posts.*', 'users.name')
-        ->latest()
-        ->get();
-        $this->namesubs=DB::table('users')
-        ->join('subscriptions', 'users.id', '=', 'subscriptions.subscription_id')
-        ->where('subscriptions.user_id', $this->user->id)
-        ->select('users.id', 'users.name')
-        ->get();
     }
     
     public function render()
@@ -42,8 +30,20 @@ class User extends Component
         return view('livewire.user', [
             'posts' => $this->post,
             'subscriptions' => $this->subscription,
-            'postsubs' => $this->postsubs,
-            'namesubs' => $this->namesubs,
+            'postsubs' =>         $postsubs=DB::table('posts')
+            ->join('subscriptions', 'posts.user_id', '=', 'subscriptions.subscription_id')
+            ->join('users', 'posts.user_id', '=', 'users.id')
+            ->where('subscriptions.user_id', $this->user->id)
+            ->select('posts.*', 'users.name')
+            ->latest()
+            ->paginate(10),
+
+
+            'namesubs' => $namesubs=DB::table('users')
+            ->join('subscriptions', 'users.id', '=', 'subscriptions.subscription_id')
+            ->where('subscriptions.user_id', $this->user->id)
+            ->select('users.id', 'users.name')
+            ->paginate(5),
         ])
                 ->extends('layouts.app')
                 ->section('content');

@@ -36,7 +36,7 @@
             <p>User ID: {!! $namesub->id !!}</p>
             </div>
             @endforeach
-            
+            {{ $namesubs->links() }}
     </div>
 </td>
 <td class="cells">
@@ -52,9 +52,13 @@
                 <p>Posted: {!! $postsub->created_at !!}</p>
                 </div>
             @endforeach 
+            {{ $postsubs->links() }}
     </div>
+    
 </td>
 </table>
+
+
 <style>
     .myTable {
         width: 90%;
