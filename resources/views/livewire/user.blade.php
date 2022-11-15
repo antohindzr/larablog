@@ -32,7 +32,8 @@
     <a class="text-2xl font-bold mb-2">My subscriptions:</a>    
             @foreach ($namesubs as $namesub)
             <div class="border-b mb-5 pb-5 border-gray-200">
-            <a class="text-2xl font-bold mb-2">{{ $namesub->name }}</a>
+            <a href="/user/{{ $namesub->id }}" class="text-2xl font-bold mb-2">{{ $namesub->name }}</a>
+            
             <p>User ID: {!! $namesub->id !!}</p>
             </div>
             @endforeach

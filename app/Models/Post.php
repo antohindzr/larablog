@@ -8,8 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    public function subscriptions()
-    {
-        return $this->belongTo(Subscription::class,'user_id');
-    }
 }

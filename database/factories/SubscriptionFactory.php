@@ -18,8 +18,8 @@ class SubscriptionFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => $this->faker->numberBetween(1, 1000),
-            'subscription_id' => $this->faker->numberBetween(1, 1000),
+            'user_id' => $this->faker->numberBetween(1, 10000),
+            'subscription_id' => $this->faker->numberBetween(1, 10000),
         ];
     }
 }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('body');
             $table->string('image')->nullable();
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->boolean('active')->default(1);
             $table->boolean('featured')->default(0);
             $table->timestamps();
