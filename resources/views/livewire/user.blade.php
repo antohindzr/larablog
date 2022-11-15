@@ -1,4 +1,6 @@
-
+<table class="myTable">
+<tr>
+<td>  
     <div class="mt-10 max-w-xl mx-auto">
     <a class="text-2xl font-bold mb-2">{{ $user->name }}</a>
         <p>E-mail: {!! $user->email !!}</p>
@@ -6,6 +8,11 @@
         <p>Registered: {!! $user->created_at !!}</p>
         <div class="border-b mb-5 pb-5 border-gray-200">
         </div>
+</td>
+<td colspan="2"></td>
+</tr>
+<tr>
+<td class="cells">
     <div class="mt-10 max-w-xl mx-auto">
     <a class="text-2xl font-bold mb-2">My posts:</a>
         @foreach ($posts as $post)
@@ -18,6 +25,9 @@
         </div>
         @endforeach
     </div>
+</td>  
+    
+<td class="cells">
     <div class="mt-10 max-w-xl mx-auto">
     <a class="text-2xl font-bold mb-2">My subscriptions:</a>    
             @foreach ($namesubs as $namesub)
@@ -28,6 +38,8 @@
             @endforeach
             
     </div>
+</td>
+<td class="cells">
     <div class="mt-10 max-w-xl mx-auto">
     <a class="text-2xl font-bold mb-2">News feed:</a>    
             @foreach ($postsubs as $postsub)
@@ -39,6 +51,16 @@
                 <p>Post ID: {!! $postsub->post_id !!}</p>
                 <p>Posted: {!! $postsub->created_at !!}</p>
                 </div>
-            @endforeach
-            
+            @endforeach 
     </div>
+</td>
+</table>
+<style>
+    .myTable {
+        width: 90%;
+        vertical-align: top;
+        }
+        td.cells {
+        vertical-align: top;
+        }
+</style>

@@ -14,12 +14,13 @@ class User extends Component
     public $subscription;
     public $postsubs;
     public $namesubs;
+    public $postraw;
    
         
 
     public function mount($id){
         $this->user = BlogPost::where('id', $id)->first();
-        $this->post = Post::all()->where('user_id', '=', $this->user->id)->orderBy('created_at', 'desc');
+        $this->post = Post::all()->where('user_id', '=', $this->user->id);
         $this->subscription=Subscription::all()->where('user_id', '=', $this->user->id);
         $this->postsubs=DB::table('posts')
         ->join('subscriptions', 'posts.user_id', '=', 'subscriptions.subscription_id')
