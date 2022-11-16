@@ -17,13 +17,14 @@
     <a class="text-2xl font-bold mb-2">My posts:</a>
         @foreach ($posts as $post)
         <div class="border-b mb-5 pb-5 border-gray-200">
-        <a class="text-2xl font-bold mb-2">{{ $post->title }}</a>
+        <a href="/post/{{ $post->slug }}" class="text-2xl font-bold mb-2">{{ $post->title }}</a>
             <p>{!! $post->body !!}</p>
             <p>User ID: {!! $post->user_id !!}</p>
             <p>Post ID: {!! $post->post_id !!}</p>
             <p>Posted: {!! $post->created_at !!}</p>
         </div>
         @endforeach
+        {{ $posts->links() }}
     </div>
 </td>  
     
@@ -45,8 +46,8 @@
     <a class="text-2xl font-bold mb-2">News feed:</a>    
             @foreach ($postsubs as $postsub)
             <div class="border-b mb-5 pb-5 border-gray-200">
-            <a class="text-2xl font-bold mb-2">{{ $postsub->name }} - </a>
-            <a class="text-2xl font-bold mb-2">{{ $postsub->title }}</a>
+            <a href="/user/{{ $postsub->id }}" class="text-2xl font-bold mb-2">{{ $postsub->name }} - </a>
+            <a href="/post/{{ $postsub->slug }}" class="text-2xl font-bold mb-2">{{ $postsub->title }}</a>
                 <p>{!! $postsub->body !!}</p>
                 <p>User ID: {!! $postsub->user_id !!}</p>
                 <p>Post ID: {!! $postsub->post_id !!}</p>

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class User extends Component
 {
     public $user;
-    public $post;
+    
     public $subscription;
     
     
@@ -20,7 +20,6 @@ class User extends Component
 
     public function mount($id){
         $this->user = BlogPost::where('id', $id)->first();
-        $this->post = Post::all()->where('user_id', '=', $this->user->id);
         $this->subscription=Subscription::all()->where('user_id', '=', $this->user->id);
     }
     
@@ -28,13 +27,19 @@ class User extends Component
     {   
         
         return view('livewire.user', [
-            'posts' => $this->post,
+            'posts' => DB::table('posts')
+            ->where('posts.user_id', $this->user->id)
+            ->select('posts.*')
+            ->latest()
+            ->paginate(10),
+
             'subscriptions' => $this->subscription,
+            
             'postsubs' =>         $postsubs=DB::table('posts')
             ->join('subscriptions', 'posts.user_id', '=', 'subscriptions.subscription_id')
             ->join('users', 'posts.user_id', '=', 'users.id')
             ->where('subscriptions.user_id', $this->user->id)
-            ->select('posts.*', 'users.name')
+            ->select('posts.*', 'users.name', 'users.id')
             ->latest()
             ->paginate(10),
 
