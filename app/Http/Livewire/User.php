@@ -16,8 +16,6 @@ class User extends Component
     
     public $postraw;
    
-        
-
     public function mount($id){
         $this->user = BlogPost::where('id', $id)->first();
         $this->subscription=Subscription::all()->where('user_id', '=', $this->user->id);

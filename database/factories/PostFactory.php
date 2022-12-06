@@ -19,8 +19,8 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $this->faker->numberBetween(1, 100000),
-            'post_id' => $this->faker->numberBetween(1, 100000),
+            'user_id' => $this->faker->numberBetween(1002, 1731),
+            'post_id' => $this->faker->numberBetween(1002, 1731),
             'title' => $this->faker->words(2, true),
             'body' => $this->faker->text,
             'slug' => Str::slug($this->faker->name),

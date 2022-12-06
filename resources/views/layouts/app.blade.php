@@ -13,8 +13,10 @@
     <x-header></x-header>
 
     @yield('content')
-
+    
     @livewireScripts
+
+    
 
 </body>
 </html>

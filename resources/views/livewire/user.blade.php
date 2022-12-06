@@ -6,6 +6,7 @@
         <p>E-mail: {!! $user->email !!}</p>
         <p>User ID: {!! $user->id !!}</p>
         <p>Registered: {!! $user->created_at !!}</p>
+        <a href="/user/{{ $user->id }}/post/create" class="text-1xl font-bold mb-2">Create Post</a>
         <div class="border-b mb-5 pb-5 border-gray-200">
         </div>
 </td>
@@ -17,7 +18,7 @@
     <a class="text-2xl font-bold mb-2">My posts:</a>
         @foreach ($posts as $post)
         <div class="border-b mb-5 pb-5 border-gray-200">
-        <a href="/post/{{ $post->slug }}" class="text-2xl font-bold mb-2">{{ $post->title }}</a>
+        <a href="/user/{{ $user->id }}/post/{{ $post->slug }}" class="text-2xl font-bold mb-2">{{ $post->title }}</a>
             <p>{!! $post->body !!}</p>
             <p>User ID: {!! $post->user_id !!}</p>
             <p>Post ID: {!! $post->post_id !!}</p>

@@ -7,5 +7,6 @@
             Welcome to The Blog
         </h1>
     </div>
-
+    
 @endsection
+

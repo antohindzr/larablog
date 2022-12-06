@@ -14,10 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'home');
-Route::get('post/create', \App\Http\Livewire\PostCreate::class);
+Route::get('user/{id}/post/create', \App\Http\Livewire\PostCreate::class);
+Route::get('user/{id}/post/{slug}', \App\Http\Livewire\Post::class);
 Route::get('post/{slug}', \App\Http\Livewire\Post::class);
 Route::get('user/{id}', \App\Http\Livewire\User::class);
 Route::get('users', \App\Http\Livewire\Users::class);
 Route::get('all', \App\Http\Livewire\All::class);
 
 
+
+
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
